@@ -1,7 +1,7 @@
 # Utilizing Deep Learning To Perform Real-Time Object Detection
 
 <div align="center">
-  <a href="https://deepwiki.com/SXV357/Inspirit-AI-FinalProject-Object-Detection-For-Self-Driving-Cars">
+  <a href="https://deepwiki.com/SXV357/DL-Object-Detection-System">
     <img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki">
   </a>
 </div>
@@ -29,19 +29,19 @@ We first built a simple 2-layer neural network and trained the model on a cars a
 ![](Images/Sliding%20Window%20P1.png)
 ![](Images/Sliding%20Window%20P2.png)
 
-We modified the original image classifier to perform object detection on a more advanced scale by making it iterate through cropped windows of a fixed size in the input image, savig those windows in a custom numpy array, and using an MLP to make predictions whether the window contains a car, truck, or any other extraneous image. We trained the model in such a way that it was able to not only provide us with its class label prediction, but also a confidence level for the prediction, which we made use of as we attempted to check the relative accuracy of the neural network. Our custom CNN and the MLP both gave us an accuracy of about 57.8%, and thought that both our networks weren't fine tuned enough to provide a high accuracy. We once again wanted to experiment with a different algorithm to check if our accuracy could go up further.
+We modified the original image classifier to perform object detection on a more advanced scale by making it iterate through cropped windows of a fixed size in the input image, saving those windows in a custom numpy array, and using an MLP to make predictions whether the window contains a car, truck, or any other extraneous image. We trained the model in such a way that it was able to not only provide us with its class label prediction, but also a confidence level for the prediction, which we made use of as we attempted to check the relative accuracy of the neural network. Our custom CNN and the MLP both gave us an accuracy of about 57.8%, and we thought that both our networks weren't fine tuned enough to provide a high accuracy. We once again wanted to experiment with a different algorithm to check if our accuracy could go up further.
 
 3. Transfer Learning model
 
 
 ![](Images/Transfer%20Learning.png)
 
-We were still interested in training a CNN that could be fairly confident in its image predictions, so we used a transfer learning model known as VGG16, which has been trained on millions of images from the ImageNet database. We loaded it in, passed it into a custom neural network we created, and trained it for about 20-30 epochs. We were able to achieve an accuracy of almost 96.9% on the testing datset and about 98.7% on the training dataset, but when we implemented the sliding window algorithm from earlier on it, we were still getting the same relative accuracy, and were fairly confident that we did not optimize the model properly once again even though we made sure to include more dropout and dense layers.
+We were still interested in training a CNN that could be fairly confident in its image predictions, so we used a transfer learning model known as VGG16, which has been trained on millions of images from the ImageNet database. We loaded it in, passed it into a custom neural network we created, and trained it for about 20-30 epochs. We were able to achieve an accuracy of almost 96.9% on the testing dataset and about 98.7% on the training dataset, but when we implemented the sliding window algorithm from earlier on it, we were still getting the same relative accuracy, and were fairly confident that we did not optimize the model properly once again even though we made sure to include more dropout and dense layers.
 
 4. YOLO(DarkNet)
 ![](Images/YOLO.png)
 
-We then used an algorithm known as YOLO for object detection/classification since we were once again experimenting with different models. We essentially pased an input image into a single-layer deep CNN known as DarkNet that is based on VGG16, and modeled a processor that would give us bounding box predictions based on which objects were present in the frame. Since our model could make detections on different scales, we wanted to extend our algorithm to a real-time situation, which in our case was a video. We were able to fine tune our container and NMS thresholds enough as for the model to be able to filter out bounding boxes and only detect the ones that are sufficiently visible in the frame.
+We then used an algorithm known as YOLO for object detection/classification since we were once again experimenting with different models. We essentially passed an input image into a pre-trained deep CNN known as DarkNet, the backbone network that YOLO is built on, and modeled a processor that would give us bounding box predictions based on which objects were present in the frame. Since our model could make detections on different scales, we wanted to extend our algorithm to a real-time situation, which in our case was a video. We were able to fine tune our confidence and NMS thresholds enough as for the model to be able to filter out bounding boxes and only detect the ones that are sufficiently visible in the frame.
 
 Here's our algorithm being employed in a real world scenario:
 
