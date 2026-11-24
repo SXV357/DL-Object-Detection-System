@@ -1,7 +1,7 @@
 # Utilizing Deep Learning To Perform Real-Time Object Detection
 
 <div align="center">
-  <a href="https://deepwiki.com/SXV357/DL-Object-Detection-System"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"></a>
+  <a href="https://deepwiki.com/SXV357/DL-Object-Detection-System"><img src="https://img.shields.io/badge/DeepWiki-Ask-blue" alt="Ask DeepWiki"></a>
 </div>
 <br />
 
